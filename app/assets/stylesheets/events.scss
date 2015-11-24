@@ -1,0 +1,39 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+	background-color: #e5e5e5!important;
+}
+.content{
+	margin-top: 75px;
+}
+
+.event-card{
+	border: 1px solid #d8d8d8;
+	margin: 10px 0 20px 0;
+	border-radius: 3px;
+	background-color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	.event-name{
+		padding: 10px;
+		border-bottom: 1px solid #e5e5e5;
+	}& a {
+		color: #777;
+		font-size: 15px;
+		font-weight: 300px;
+	}& h2{
+		margin: 0;
+		color: #777;
+		font-size: 20px;
+		font-weight: 300px;
+	}
+	.event-prize, .event-city, .last-day, .event-link{
+		padding: 10px 20px;
+		border-top: 1px solid #e5e5e5;
+		color: #777;
+	}
+	.glyphicon{
+		right: 10px;
+	}
+}

@@ -1,0 +1,20 @@
+= provide(:title, @event.name)
+
+p#notice = notice
+
+p
+  strong Name:
+  = @event.name
+p
+  strong Prize money:
+  = number_to_currency(@event.prize_money)
+p
+  strong Application link:
+  = @event.application_link
+p
+  strong Last day to apply:
+  = @event.last_day_apply
+
+= link_to 'Edit', edit_event_path(@event)
+'|
+= link_to 'Back', events_path

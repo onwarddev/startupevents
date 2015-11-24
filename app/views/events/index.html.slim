@@ -1,0 +1,76 @@
+= provide(:title, 'Startup Events')
+= search_form_for @search do |f|
+  = f.condition_fields do |c|
+    = render "condition_fields", f: c
+  p = link_to_add_fields "Add Conditions", f, :condition 
+  .actions = f.submit class: "btn btn-primary"
+
+= link_to 'New Event', new_event_path, class: "btn btn-primary pull-right"
+h1 Startup Events
+
+table.table-hover.table
+  thead
+    tr
+      th Name
+      th Prize money
+      th City
+      th State
+      th Last day to apply
+      th
+      th
+      th
+
+  tbody
+    - @events.each do |event|
+      tr
+        td = link_to event.name, event.application_link
+        td = number_to_currency(event.prize_money)
+        td = event.city
+        td = event.state
+        td = event.last_day_apply
+        td = link_to 'Show', event
+        td = link_to 'Edit', edit_event_path(event)
+        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+.row
+  - @events.each do |event|
+    .col-md-3
+      .event-card
+        .event-name 
+          h2 = event.name
+        .event-city 
+          span.glyphicon.glyphicon-map-marker 
+          = event.city
+          span , 
+          = event.state
+        .event-prize
+          span.glyphicon.glyphicon-usd 
+          = event.prize_money
+        .last-day 
+          span.glyphicon.glyphicon-calendar 
+          = event.last_day_apply
+        .event-link
+          = link_to "Visit Website", event.application_link 
+        /.event-details = link_to 'Show', event
+        /.edit-event = link_to 'Edit', edit_event_path(event)
+        /.delete-event = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+
+h2 User details
+- if current_user
+  p
+    = "Current user: #{current_user.email}"
+    br
+    = "Last sign in at: #{current_user.last_sign_in_at}"
+    br
+    = "Role: #{current_user.role}"
+    br
+    =link_to 'Sign Out', destroy_user_session_path, method: :delete
+    - if current_user.role == "editor"
+      br
+      =  "you are an editor"
+    end
+end
+- if !current_user
+  = "no user signed in"
+end
